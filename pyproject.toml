@@ -1,0 +1,77 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "causalaudit"
+version = "0.1.0"
+description = "Causal drift detection for deployed ML models."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "CausalAudit Contributors" },
+]
+keywords = ["causality", "causal-inference", "ml-monitoring", "drift-detection", "mlops"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = [
+    "litellm>=1.30.0",
+    "networkx>=3.2",
+    "numpy>=1.26",
+    "scipy>=1.11,<1.14",
+    "pandas>=2.1",
+    "typer[all]>=0.12",
+    "pydantic>=2.5",
+    "pydantic-settings>=2.1",
+    "rich>=13.7",
+    "pyvis>=0.3.2",
+    "matplotlib>=3.8",
+    "fastapi>=0.109",
+    "uvicorn[standard]>=0.27",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=4.1",
+    "ruff>=0.2",
+    "mypy>=1.8",
+    "httpx>=0.27",
+]
+
+[project.scripts]
+causalaudit = "causalaudit.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/causalaudit/causalaudit"
+Documentation = "https://github.com/causalaudit/causalaudit#readme"
+Repository = "https://github.com/causalaudit/causalaudit"
+Issues = "https://github.com/causalaudit/causalaudit/issues"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "A", "SIM", "TCH"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
